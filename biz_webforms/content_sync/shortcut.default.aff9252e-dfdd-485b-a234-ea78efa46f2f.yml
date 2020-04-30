@@ -1,0 +1,26 @@
+uuid:
+  -
+    value: aff9252e-dfdd-485b-a234-ea78efa46f2f
+langcode:
+  -
+    value: en
+shortcut_set:
+  -
+    target_id: default
+    target_type: shortcut_set
+    target_uuid: fc702b19-1c78-4a13-bb1d-39cced385e9c
+title:
+  -
+    value: 'User information (User)'
+weight: {  }
+link:
+  -
+    uri: 'internal:/admin/structure/views/view/user_information'
+    title: null
+    options: {  }
+default_langcode:
+  -
+    value: true
+_content_sync:
+  entity_type: shortcut
+  entity_dependencies: {  }

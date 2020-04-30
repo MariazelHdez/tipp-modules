@@ -1,0 +1,68 @@
+uuid:
+  -
+    value: 60af14c3-2283-442f-9583-8f0b9190ebaa
+langcode:
+  -
+    value: en
+vid:
+  -
+    target_id: community
+    target_type: taxonomy_vocabulary
+    target_uuid: 8925b6b4-831e-42d8-8048-b946e58bb419
+revision_created:
+  -
+    value: '2020-02-26T00:28:02+00:00'
+    format: 'Y-m-d\TH:i:sP'
+revision_user: {  }
+revision_log_message: {  }
+status:
+  -
+    value: true
+name:
+  -
+    value: 'Dawson City'
+description:
+  -
+    value: null
+    format: null
+    processed: ''
+weight:
+  -
+    value: 4
+parent:
+  -
+    target_id: 0
+changed:
+  -
+    value: '2020-04-29T16:15:58+00:00'
+    format: 'Y-m-d\TH:i:sP'
+default_langcode:
+  -
+    value: true
+revision_translation_affected:
+  -
+    value: true
+path:
+  -
+    alias: null
+    pid: null
+    langcode: en
+content_translation_source:
+  -
+    value: und
+content_translation_outdated:
+  -
+    value: false
+content_translation_uid:
+  -
+    target_type: user
+    target_uuid: 8e951786-6657-44e0-a276-68836602c165
+content_translation_created:
+  -
+    value: '2020-02-26T00:28:02+00:00'
+    format: 'Y-m-d\TH:i:sP'
+_content_sync:
+  entity_type: taxonomy_term
+  entity_dependencies:
+    user:
+      - user.user.8e951786-6657-44e0-a276-68836602c165

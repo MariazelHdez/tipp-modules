@@ -1,0 +1,70 @@
+uuid:
+  -
+    value: 73dddbe9-b9e5-4be5-b8bc-c28361821a9a
+langcode:
+  -
+    value: en
+preferred_langcode:
+  -
+    value: en
+preferred_admin_langcode: {  }
+name:
+  -
+    value: ''
+mail:
+  value: null
+timezone:
+  -
+    value: ''
+status:
+  value: '0'
+created:
+  -
+    value: '2019-10-22T23:08:31+00:00'
+    format: 'Y-m-d\TH:i:sP'
+changed:
+  -
+    value: '2019-10-22T23:08:31+00:00'
+    format: 'Y-m-d\TH:i:sP'
+access:
+  -
+    value: '1970-01-01T00:00:00+00:00'
+    format: 'Y-m-d\TH:i:sP'
+login:
+  -
+    value: '1970-01-01T00:00:00+00:00'
+    format: 'Y-m-d\TH:i:sP'
+init: {  }
+roles:
+  - anonymous
+default_langcode:
+  -
+    value: true
+content_translation_source:
+  -
+    value: und
+content_translation_outdated:
+  -
+    value: false
+content_translation_uid: {  }
+content_translation_status:
+  -
+    value: true
+content_translation_created: {  }
+field_business_name: {  }
+field_first_name: {  }
+field_first_name_consultant_: {  }
+field_last_name: {  }
+field_last_name_consultant_: {  }
+field_legal_organization: {  }
+field_operating_organization: {  }
+field_position: {  }
+field_street_address: {  }
+field_telephone: {  }
+_content_sync:
+  entity_type: user
+  is_anonymous: true
+pass:
+  -
+    value: null
+    pre_hashed: true

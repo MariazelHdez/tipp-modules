@@ -1,0 +1,259 @@
+langcode: en
+status: open
+dependencies:
+  module:
+    - biz_webforms
+open: null
+close: null
+weight: 0
+uid: 1
+template: false
+archive: false
+id: turn_in_poachers_polluters
+title: 'Turn In Poachers & Polluters'
+description: ''
+category: Yukon
+elements: "'#attributes':\n  class:\n    - container\nprocessed_text_02:\n  '#type': processed_text\n  '#wrapper_attributes':\n    class:\n      - preview-message\n    style: 'font-weight: bold;   margin: 25px 0px 25px 0px;'\n  '#display_on': view\n  '#text': |\n    <p>These are all the details of your submission. If you want to make changes click the \"Go back a step\" link below. If you are happy with what’s here, click \"Send report\"</p>\n    \n  '#class': preview-message\n  '#format': full_html\nid:\n  '#type': hidden\n  '#title': ID\npresentation:\n  '#type': webform_wizard_page\n  '#title': Presentation\n  '#next_button_label': 'Report an incident'\n  warning_mesage:\n    '#type': webform_message\n    '#message_type': warning\n    '#message_message': |\n      <ul>\n      \t<li>This page is not monitored 24 hours a day, 7 days a week.</li>\n      \t<li>If this is a life threatening emergency call 911.</li>\n      \t<li>For dangerous wildlife encounters and other immediate assistance please call the TIPP Line at <a href=\"tel:1-800-661-0525\">1-800-661-0525</a></li>\n      </ul>\n      \n  container_01:\n    '#type': container\n    '#format_attributes':\n      class:\n        - row\n    col_md_7:\n      '#type': container\n      '#attributes':\n        class:\n          - col-md-7\n      introduction:\n        '#type': processed_text\n        '#text': |\n          <p>If you’ve seen someone (or evidence of someone) you suspect is violating wildlife or environmental laws, we encourage you to call the TIPP line. For non-immediate assistance&nbsp;you can also use this form to report the incident.</p>\n          \n          <p>All information reported will be kept confidential. Cash rewards are available. You can submit this report anonymously.</p>\n          \n        '#format': basic_html\n      actions_01:\n        '#type': webform_actions\n        '#title': 'Submit button(s)'\n        '#submit__label': 'Send report'\n        '#wizard_prev_hide': true\n        '#wizard_prev__label': 'Go back a step'\n        '#wizard_next__label': 'Continue to next step'\n        '#preview_prev_hide': true\n        '#preview_prev__label': 'Go back a step'\n        '#preview_next_hide': true\n        '#preview_next__label': 'Continue to next step'\n      processed_text:\n        '#type': processed_text\n        '#text': |\n          <h2 class=\"tipp-sub-title\">Other ways to report an incident</h2>\n          \n          <p>Call the TIPP Line at <a href=\"tel:1-800-661-0525\">1-800-661-0525</a>.</p>\n          \n          <h2 class=\"tipp-sub-title\">&nbsp;</h2>\n          \n          <h2 class=\"tipp-sub-title\">A note about privacy</h2>\n          \n          <p>Personal information is collected under the authority of s.29(c) of the<em>&nbsp;Access to Information and Protection of Privacy Act</em>&nbsp;S.Y. 2002, c.1, s.29 and will be used for the administration and enforcement of the&nbsp;<em>Wildlife Act,&nbsp;Fisheries Act</em>, and&nbsp;<em>Environment Act</em>&nbsp;and for evaluation, research and statistical purposes.</p>\n          \n          <p>Information collected is pursuant to the&nbsp;<em>Access to Information and Protection of Privacy Act, Wildlife Act, Fisheries Act</em>&nbsp;and&nbsp;<em>Environment Act</em>&nbsp;and may be disclosed.</p>\n          \n          <p>For further information please contact Conservation Officer Services, Environment, Government of Yukon, Whitehorse, YT Y1A 2C6 or&nbsp;<a href=\"tel:867-667-5652\" target=\"_blank\">867-667-5652</a>&nbsp;or&nbsp;<a href=\"tel:1-800-661-0408;5652\" target=\"_blank\">1-800-661-0408 ext 5652</a></p>\n          \n        '#format': full_html\n    col_md_5:\n      '#type': container\n      '#attributes':\n        class:\n          - col-md-5\n      image:\n        '#type': processed_text\n        '#wrapper_attributes':\n          class:\n            - tipp-img\n        '#text': |\n          <p><img alt=\"TIPP\" data-entity-type=\"file\" data-entity-uuid=\"4e979241-d098-477f-845e-93e61ab97701\" src=\"/sites/default/files/inline-images/tipp.jpg\" /></p>\n          \n        '#format': basic_html\nform:\n  '#type': webform_wizard_page\n  '#title': Form\n  '#next_button_label': 'Continue to next step'\n  date_time_incident:\n    '#type': datetime\n    '#title': 'Date and time of the incident.'\n    '#required': true\n    '#required_error': 'Date and time of the incident is required'\n    '#format': custom\n    '#format_html': '{{ value|date(\"Y/m/d G:i\") }}'\n    '#format_text': '{{ value|date(\"Y/m/d G:i\") }}'\n    '#date_date_element': datepicker\n    '#date_date_format': Y/m/d\n    '#date_time_element': timepicker\n    '#date_time_format': 'H:i'\n  describe_incident:\n    '#type': textarea\n    '#title': 'Describe the incident. Be as specific as possible.'\n    '#autocomplete': 'off'\n    '#required': true\n    '#required_error': 'Describe the incident'\n  incident_photos:\n    '#type': managed_file\n    '#title': 'If you have photos of the incident, attach up to three here.'\n    '#multiple': true\n    '#uri_scheme': public\n    '#file_placeholder': 'Note: Files will be uploaded when form is submitted. Maximum file size is 10 MB each.'\n    '#file_preview': file\n    '#max_filesize': '10'\n    '#file_extensions': 'gif jpg jpeg png bmp eps tif pict psd avi mov mp3 ogg mp4'\n  community:\n    '#type': webform_term_select\n    '#title': 'Community where the incident occurred (or nearest community).'\n    '#required': true\n    '#format': label\n    '#vocabulary': community\n    '#breadcrumb_delimiter': ''\n  locationl_description:\n    '#type': textarea\n    '#title': 'Provide your best physical description of the location of the incident (e.g., street, highway km marker; lot #, landmark, GPS coordinates).'\n    '#required': true\n    '#required_error': 'Describe the location'\n  direction_of_trave_licence_vehicle_plate:\n    '#type': textarea\n    '#title': 'Description, direction of travel and/or licence plate of vehicle(s) (e.g., truck, ATV, boat, plane) involved in the incident, if applicable.'\n  people_involved:\n    '#type': number\n    '#title': 'If there were any people involved, how many?'\n    '#min': '0'\n    '#max': '99'\n  person_involved_description:\n    '#type': textarea\n    '#title': 'If applicable, physical description and/ or name(s) of person(s) involved.'\n  additional_comments:\n    '#type': textarea\n    '#title': 'Additional comments/information.'\n  processed_text_01:\n    '#type': processed_text\n    '#text': |\n      <p><strong>A cash reward may be offered for information that results in charges being laid.</strong></p>\n      \n    '#format': basic_html\n  information_results_charges:\n    '#type': select\n    '#title': 'Do you wish to be considered for a cash reward?'\n    '#options':\n      'Yes, and I will provide my contact information': 'Yes, and I will provide my contact information'\n      'Yes, but I prefer to remain anonymous': 'Yes, but I prefer to remain anonymous'\n      'No, but I will provide my contact information': 'No, but I will provide my contact information'\n      'No, and I prefer to remain anonymous': 'No, and I prefer to remain anonymous'\n    '#empty_option': 'Select option'\n    '#empty_value': 'Select option'\n    '#required': true\n  container_contact_info:\n    '#type': container\n    '#states':\n      visible:\n        - ':input[name=\"information_results_charges\"]':\n            value: 'Yes, and I will provide my contact information'\n        - xor\n        - ':input[name=\"information_results_charges\"]':\n            value: 'No, but I will provide my contact information'\n    contact_information_title:\n      '#type': processed_text\n      '#text': |\n        <h3>Contact Information</h3>\n        \n        <p>All information provided will be kept confidential. However, a conservation officer may need to contact you to clarify the information you provide, so it is important you provide a contact phone number.</p>\n        \n      '#format': basic_html\n    name:\n      '#type': textfield\n      '#title': Name\n    mailing_address:\n      '#type': textfield\n      '#title': 'Contact address'\n    community_contact:\n      '#type': webform_term_select\n      '#title': Community\n      '#format': value\n      '#vocabulary': community\n      '#breadcrumb_delimiter': ''\n    phone:\n      '#type': tel\n      '#title': Phone\n      '#format': value\n    alternate_phone:\n      '#type': tel\n      '#title': 'Alternate phone'\n      '#format': value\n    email:\n      '#type': email\n      '#title': Email\n      '#format': value\n    contact_info_fotter:\n      '#type': processed_text\n      '#text': |\n        <p>Once you click the submit button, you will receive a report ID number. Please keep this number for your reference. You will have the option to print your report.</p>\n        \n      '#format': basic_html\n  container_anonymous_input:\n    '#type': container\n    '#states':\n      visible:\n        ':input[name=\"information_results_charges\"]':\n          value: 'Yes, but I prefer to remain anonymous'\n    anonymous_report_text:\n      '#type': processed_text\n      '#text': |\n        <h3>Anonymous Report</h3>\n        \n        <p>In the event that the information you provided results in charges laid, you may be eligible for a cash reward. If this happens, how may we contact you?</p>\n        \n      '#format': basic_html\n    anonymous_report:\n      '#type': textarea\n      '#title': 'Anonymous Report'\n      '#title_display': invisible\n  container_anonymous:\n    '#type': container\n    '#states':\n      visible:\n        ':input[name=\"information_results_charges\"]':\n          value: 'No, and I prefer to remain anonymous'\n    anonymoust_report_desc:\n      '#type': processed_text\n      '#text': |\n        <p>Once you click the submit button, you will receive a report ID number. Please keep this number for your reference-it is the only identification we have for anonymous submissions. You will have the option to print your report.</p>\n        \n      '#format': basic_html\n    anonymous_report_last_option:\n      '#type': processed_text\n      '#text': |\n        <h3>Anonymous Report</h3>\n        \n        <p>You have chosen to submit an anonymous report, and declined to be considered for a cash reward.</p>\n        \n        <p>Once you click the submit button, you will receive a report ID number. Please keep this number for your reference. You will have the option to print your report.</p>\n        \n      '#format': basic_html\n  actions_02:\n    '#type': webform_actions\n    '#title': 'Submit button(s)'\n    '#submit_hide': true\n    '#submit__label': 'Send report'\n    '#wizard_prev__label': 'Go back a step'\n    '#wizard_next__label': 'Continue to next step'\n    '#preview_prev_hide': true\n    '#preview_prev__label': 'Go back a step'\n    '#preview_next__label': 'Continue to next step'\nactions:\n  '#type': webform_actions\n  '#title': 'Submit button(s)'\n  '#submit__label': 'Send report'\n  '#wizard_prev_hide': true\n  '#wizard_prev__label': 'Go back a step'\n  '#wizard_next_hide': true\n  '#wizard_next__label': 'Continue to next step'\n  '#preview_prev__label': 'Go back a step'\n  '#preview_prev__attributes':\n    class:\n      - preview-back\n  '#preview_next_hide': true\n  '#preview_next__label': 'Continue to next step'"
+css: ''
+javascript: ''
+settings:
+  ajax: false
+  ajax_scroll_top: ''
+  ajax_progress_type: ''
+  ajax_effect: ''
+  ajax_speed: null
+  page: true
+  page_submit_path: /tipp
+  page_confirm_path: ''
+  page_admin_theme: false
+  form_title: source_entity_webform
+  form_submit_once: false
+  form_exception_message: ''
+  form_open_message: ''
+  form_close_message: ''
+  form_previous_submissions: true
+  form_confidential: false
+  form_confidential_message: ''
+  form_remote_addr: true
+  form_convert_anonymous: false
+  form_prepopulate: false
+  form_prepopulate_source_entity: false
+  form_prepopulate_source_entity_required: false
+  form_prepopulate_source_entity_type: ''
+  form_reset: false
+  form_disable_autocomplete: false
+  form_novalidate: true
+  form_disable_inline_errors: true
+  form_required: false
+  form_unsaved: false
+  form_disable_back: false
+  form_submit_back: false
+  form_autofocus: false
+  form_details_toggle: false
+  form_access_denied: default
+  form_access_denied_title: ''
+  form_access_denied_message: ''
+  form_access_denied_attributes: {  }
+  form_file_limit: ''
+  submission_label: ''
+  submission_log: false
+  submission_views: {  }
+  submission_views_replace:
+    webform_routes: {  }
+    node_routes: {  }
+  submission_user_columns: {  }
+  submission_user_duplicate: false
+  submission_access_denied: default
+  submission_access_denied_title: ''
+  submission_access_denied_message: ''
+  submission_access_denied_attributes: {  }
+  submission_exception_message: ''
+  submission_locked_message: ''
+  submission_excluded_elements: {  }
+  submission_exclude_empty: false
+  submission_exclude_empty_checkbox: false
+  previous_submission_message: test
+  previous_submissions_message: ''
+  autofill: false
+  autofill_message: ''
+  autofill_excluded_elements: {  }
+  wizard_progress_bar: false
+  wizard_progress_pages: true
+  wizard_progress_percentage: false
+  wizard_progress_link: false
+  wizard_progress_states: false
+  wizard_start_label: ''
+  wizard_preview_link: false
+  wizard_confirmation: false
+  wizard_confirmation_label: ''
+  wizard_track: ''
+  preview: 2
+  preview_label: ''
+  preview_title: ''
+  preview_message: ''
+  preview_attributes:
+    class:
+      - 'messages messages--status'
+  preview_excluded_elements: {  }
+  preview_exclude_empty: true
+  preview_exclude_empty_checkbox: false
+  draft: none
+  draft_multiple: false
+  draft_auto_save: false
+  draft_saved_message: ''
+  draft_loaded_message: ''
+  draft_pending_single_message: ''
+  draft_pending_multiple_message: ''
+  confirmation_type: page
+  confirmation_title: ''
+  confirmation_message: "<p>Thank you, your report&nbsp;has been sent. Please note your report ID for any future correspondence on this matter.</p>\r\n\r\n<p><strong>Report ID:&nbsp;&nbsp;</strong>[current-date:custom:ymd]-[current-date:custom:Hi]&nbsp;<br />\r\n<br />\r\nTelephone 1-800-661-0525 if assistance is required</p>"
+  confirmation_url: '/test?id=[webform_submission:values:report_id]'
+  confirmation_attributes: {  }
+  confirmation_back: true
+  confirmation_back_label: 'Report another incident'
+  confirmation_back_attributes: {  }
+  confirmation_exclude_query: false
+  confirmation_exclude_token: false
+  confirmation_update: false
+  limit_total: null
+  limit_total_interval: null
+  limit_total_message: ''
+  limit_total_unique: false
+  limit_user: null
+  limit_user_interval: null
+  limit_user_message: ''
+  limit_user_unique: false
+  entity_limit_total: null
+  entity_limit_total_interval: null
+  entity_limit_user: null
+  entity_limit_user_interval: null
+  purge: none
+  purge_days: null
+  results_disabled: false
+  results_disabled_ignore: false
+  token_view: false
+  token_update: false
+access:
+  create:
+    roles:
+      - anonymous
+      - authenticated
+    users: {  }
+    permissions: {  }
+  view_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  update_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  delete_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  purge_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  view_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  update_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  delete_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  administer:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  test:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  configuration:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+handlers:
+  email_1:
+    id: email
+    label: 'Email to contact'
+    handler_id: email_1
+    status: true
+    conditions: {  }
+    weight: 0
+    settings:
+      states:
+        - completed
+      to_mail: '[webform_submission:values:email:raw]'
+      to_options: {  }
+      cc_mail: ''
+      cc_options: {  }
+      bcc_mail: ''
+      bcc_options: {  }
+      from_mail: _default
+      from_options: {  }
+      from_name: 'Turn In Poachers & Polluters'
+      subject: _default
+      body: "<p>Submitted on [webform_submission:created]</p>\r\n\r\n<p>Report ID : [current-date:custom:ymd]-[current-date:custom:Hi][webform_submission:sid]</p>\r\n\r\n<p>Submitted values are:</p>\r\n[webform_submission:values]"
+      excluded_elements:
+        processed_text_02: processed_text_02
+      ignore_access: false
+      exclude_empty: true
+      exclude_empty_checkbox: false
+      exclude_attachments: false
+      html: true
+      attachments: true
+      twig: false
+      debug: false
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
+      theme_name: ''
+      parameters: {  }
+  send_email_and_or_delete_submissions:
+    id: delete_submissions_email
+    label: 'Send Email and/or delete submissions'
+    handler_id: send_email_and_or_delete_submissions
+    status: true
+    conditions: {  }
+    weight: 0
+    settings:
+      states:
+        - completed
+      delete_submission: true
+      to_mail: mariazel@bizont.ca
+      to_options: {  }
+      cc_mail: ''
+      cc_options: {  }
+      bcc_mail: ''
+      bcc_options: {  }
+      from_mail: _default
+      from_options: {  }
+      from_name: 'Turn In Poachers & Polluters'
+      subject: _default
+      body: _default
+      excluded_elements:
+        processed_text_02: processed_text_02
+      ignore_access: 0
+      exclude_empty: true
+      exclude_empty_checkbox: 0
+      exclude_attachments: 0
+      html: true
+      attachments: true
+      twig: false
+      debug: false
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
+      theme_name: ''
+      parameters: {  }
+variants: {  }

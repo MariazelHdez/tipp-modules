@@ -1,0 +1,23 @@
+name: 'Site TIPP'
+description: 'Provides site components.'
+type: module
+core: 8.x
+dependencies:
+  - biz_webforms
+  - block
+  - block_content
+  - captcha
+  - ckeditor
+  - contact
+  - content_translation
+  - editor
+  - field
+  - filter
+  - help
+  - language
+  - search
+  - system
+  - taxonomy
+  - text
+  - webform
+  - wxt_library

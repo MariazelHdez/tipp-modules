@@ -1,0 +1,301 @@
+diff --git a/web/modules/contrib/wxt_library/composer.json b/web/modules/contrib/wxt_library/composer.json
+index b1bc873..a7652d3 100644
+--- a/web/modules/contrib/wxt_library/composer.json
++++ b/web/modules/contrib/wxt_library/composer.json
+@@ -17,12 +17,12 @@
+         "composer/installers": "^1.2",
+         "cweagans/composer-patches": "^1.6.0",
+         "drupal/core": "8.*",
+-        "wet-boew/wet-boew": "4.0.32",
+-        "wet-boew/theme-wet-boew": "4.0.32",
++        "wet-boew/wet-boew": "4.0.30",
++        "wet-boew/theme-wet-boew": "4.0.29",
+         "wet-boew/theme-base": "4.0.27",
+         "wet-boew/theme-gc-intranet": "4.0.27",
+         "wet-boew/theme-gcwu-fegc": "4.0.27",
+-        "wet-boew/theme-gcweb": "6.0.0",
++        "wet-boew/theme-gcweb": "5.0.1",
+         "wet-boew/theme-gcweb-legacy": "4.0.29",
+         "wet-boew/theme-ogpl": "4.0.27"
+     },
+diff --git a/web/modules/contrib/wxt_library/src/Form/SearchApiBlockForm.php b/web/modules/contrib/wxt_library/src/Form/SearchApiBlockForm.php
+index ef6afb8..b99a717 100644
+--- a/web/modules/contrib/wxt_library/src/Form/SearchApiBlockForm.php
++++ b/web/modules/contrib/wxt_library/src/Form/SearchApiBlockForm.php
+@@ -98,21 +98,14 @@ class SearchApiBlockForm extends FormBase {
+       ],
+     ];
+ 
+-    $form['submit_container'] = array(
+-      '#type' => 'container',
+-      '#attributes' => array(
+-        'class' => ['submit'],
+-      )
+-    );
+-
+-    $form['submit_container']['submit'] = [
++    $form['submit'] = [
+       '#type' => 'submit',
+       '#value' => $submit_title,
+       '#id' => 'wb-srch-sub',
+     ];
+ 
+     if ($wxt_active == 'gcweb' || $wxt_active == 'gcweb_legacy') {
+-      $form['submit_container']['submit']['#value'] = '';
++      $form['submit']['#value'] = '';
+       $form['keys']['#placeholder'] = $this->t('Search website');
+       $wxt_gcweb_search = Bootstrap::getTheme()->getSetting('wxt_gcweb_search');
+       if (!empty($wxt_gcweb_search)) {
+diff --git a/web/modules/contrib/wxt_library/src/Form/SearchBlockForm.php b/web/modules/contrib/wxt_library/src/Form/SearchBlockForm.php
+index 6576eb4..a1b0df9 100644
+--- a/web/modules/contrib/wxt_library/src/Form/SearchBlockForm.php
++++ b/web/modules/contrib/wxt_library/src/Form/SearchBlockForm.php
+@@ -123,21 +123,14 @@ class SearchBlockForm extends FormBase {
+       ],
+     ];
+ 
+-    $form['submit_container'] = array(
+-      '#type' => 'container',
+-      '#attributes' => array(
+-        'class' => ['submit'],
+-      )
+-    );
+-
+-    $form['submit_container']['submit'] = [
++    $form['submit'] = [
+       '#type' => 'submit',
+       '#value' => $submit_title,
+       '#id' => 'wb-srch-sub',
+     ];
+ 
+     if ($wxt_active == 'gcweb' || $wxt_active == 'gcweb_legacy') {
+-      $form['submit_container']['submit']['#value'] = '';
++      $form['submit']['#value'] = '';
+       $form['keys']['#placeholder'] = $this->t('Search website');
+       $wxt_gcweb_search = Bootstrap::getTheme()->getSetting('wxt_gcweb_search');
+       if (!empty($wxt_gcweb_search)) {
+diff --git a/web/modules/contrib/wxt_library/src/Plugin/Block/LanguageBlock.php b/web/modules/contrib/wxt_library/src/Plugin/Block/LanguageBlock.php
+index 1fdf1ac..166c00f 100644
+--- a/web/modules/contrib/wxt_library/src/Plugin/Block/LanguageBlock.php
++++ b/web/modules/contrib/wxt_library/src/Plugin/Block/LanguageBlock.php
+@@ -138,25 +138,24 @@ class LanguageBlock extends BlockBase implements ContainerFactoryPluginInterface
+     }
+ 
+     $type = $this->getDerivativeId();
++    $links = $this->languageManager->getLanguageSwitchLinks($type, Url::fromRoute($route_name));
+     $language = $this->languageManager->getCurrentLanguage()->getId();
+     $theme_config = $this->configFactory->get('wxt_library.settings');
+     $wxt_active = $theme_config->get('wxt.theme');
+-    $links = $this->languageManager->getLanguageSwitchLinks($type, Url::fromRoute($route_name));
+ 
+-    if (isset($links->links)) {
+-      // Don't show all defined languages in language switcher.
+-      $toggle = FALSE;
+-      foreach ($config['language_toggle'] as $enabled) {
+-        if ($enabled === $wxt_active) {
+-          $toggle = TRUE;
+-        }
+-      }
+-      if (!$toggle) {
+-        unset($links->links[$language]);
++    // Don't show current language in toggle.
++    $toggle = FALSE;
++    foreach ($config['language_toggle'] as $enabled) {
++      if ($enabled === $wxt_active) {
++        $toggle = TRUE;
+       }
+-      $wxt_active = str_replace('-', '_', $wxt_active);
+-      $wxt_active = str_replace('theme_', '', $wxt_active);
+-
++    }
++    if (!$toggle) {
++      unset($links->links[$language]);
++    }
++    $wxt_active = str_replace('-', '_', $wxt_active);
++    $wxt_active = str_replace('theme_', '', $wxt_active);
++    if (isset($links->links)) {
+       $build = [
+         '#theme' => 'links__language_block__' . $wxt_active,
+         '#links' => $links->links,
+diff --git a/web/modules/contrib/wxt_library/src/Plugin/Condition/PanelsTitle.php b/web/modules/contrib/wxt_library/src/Plugin/Condition/PanelsTitle.php
+index 755771f..d727466 100644
+--- a/web/modules/contrib/wxt_library/src/Plugin/Condition/PanelsTitle.php
++++ b/web/modules/contrib/wxt_library/src/Plugin/Condition/PanelsTitle.php
+@@ -3,19 +3,17 @@
+ namespace Drupal\wxt_library\Plugin\Condition;
+ 
+ use Drupal\Core\Condition\ConditionPluginBase;
+-use Drupal\Core\Entity\EntityDisplayRepositoryInterface;
+ use Drupal\Core\Form\FormStateInterface;
+ use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+ use Symfony\Component\DependencyInjection\ContainerInterface;
+ use Symfony\Component\HttpFoundation\RequestStack;
+-use Drupal\layout_builder_st\Entity\LayoutBuilderEntityViewDisplay;
+ 
+ /**
+- * Provides a 'Layout Builder Title' condition.
++ * Provides a 'Panels Title' condition.
+  *
+  * @Condition(
+  *   id = "panels_title",
+- *   label = @Translation("Layout Builder Title"),
++ *   label = @Translation("Panels Title"),
+  *   context = {
+  *     "node" = @ContextDefinition("entity:node", label = @Translation("Current Node"), required = FALSE),
+  *     "taxonomy_term" = @ContextDefinition("entity:taxonomy_term", label = @Translation("Current Taxonomy Term"), required = FALSE),
+@@ -32,19 +30,10 @@ class PanelsTitle extends ConditionPluginBase implements ContainerFactoryPluginI
+   protected $requestStack;
+ 
+   /**
+-   * The entity display repository.
+-   *
+-   * @var \Drupal\Core\Entity\EntityDisplayRepositoryInterface
+-   */
+-  protected $entityDisplayRepository;
+-
+-  /**
+-   * Constructs a LayoutBuilderTitle condition plugin.
++   * Constructs a PanelsTitle condition plugin.
+    *
+    * @param \Symfony\Component\HttpFoundation\RequestStack $request_stack
+    *   The request stack.
+-   * @param \Drupal\Core\Entity\EntityDisplayRepositoryInterface $entity_display_repository
+-   *   The entity display repository.
+    * @param array $configuration
+    *   A configuration array containing information about the plugin instance.
+    * @param string $plugin_id
+@@ -52,10 +41,9 @@ class PanelsTitle extends ConditionPluginBase implements ContainerFactoryPluginI
+    * @param array $plugin_definition
+    *   The plugin implementation definition.
+    */
+-  public function __construct(RequestStack $request_stack, EntityDisplayRepositoryInterface $entity_display_repository, array $configuration, $plugin_id, array $plugin_definition) {
++  public function __construct(RequestStack $request_stack, array $configuration, $plugin_id, array $plugin_definition) {
+     parent::__construct($configuration, $plugin_id, $plugin_definition);
+     $this->requestStack = $request_stack;
+-    $this->entityDisplayRepository = $entity_display_repository;
+   }
+ 
+   /**
+@@ -64,7 +52,6 @@ class PanelsTitle extends ConditionPluginBase implements ContainerFactoryPluginI
+   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
+     return new static(
+       $container->get('request_stack'),
+-      $container->get('entity_display.repository'),
+       $configuration,
+       $plugin_id,
+       $plugin_definition
+@@ -110,45 +97,10 @@ class PanelsTitle extends ConditionPluginBase implements ContainerFactoryPluginI
+         if ($variant->access('view')) {
+           /** @var \Drupal\ctools\Plugin\BlockVariantInterface $variant_plugin */
+           $variant_plugin = $variant->getVariantPlugin();
+-          if ($variant_plugin->pluginId != 'http_status_code') {
+-            foreach ($variant_plugin->getRegionAssignments() as $blocks) {
+-              /** @var \Drupal\Core\Block\BlockPluginInterface[] $blocks */
+-              foreach ($blocks as $block) {
+-                if ($block->getPluginId() == 'page_title_block') {
+-                  return FALSE;
+-                }
+-              }
+-            }
+-          }
+-        }
+-      }
+-    }
+-
+-    // Layout support for Node / Taxonomy Term.
+-    $supported_entities = ['node', 'taxonomy_term'];
+-    foreach ($supported_entities as $supported_entity) {
+-      $entity = $this->getContextValue($supported_entity);
+-      if (!empty($entity) && $entity->__isset('layout_builder__layout')) {
+-        // Layout Builder custom display for individual entity.
+-        $layout_values = $entity->get('layout_builder__layout')->getValue();
+-        $section = array_pop($layout_values);
+-        if (!empty($section['section'])) {
+-          foreach ($section['section']->getComponents() as $component) {
+-            $plugin = $component->getPlugin();
+-            $configuration = $plugin->getConfiguration();
+-            if ($configuration['id'] == 'field_block:node:page:title' ||
+-                $configuration['id'] == 'page_title_block') {
+-              return FALSE;
+-            }
+-          }
+-        }
+-        else {
+-          // Layout Builder default display for supported entities.
+-          $view_modes = $this->entityDisplayRepository->getViewModeOptionsByBundle($entity->getEntityTypeId(), $entity->getType());
+-          foreach (array_keys($view_modes) as $view_mode) {
+-            $display = lightning_layout_entity_get_display($entity->getEntityTypeId(), $entity->getType(), $view_mode);
+-            if (($display instanceof LayoutBuilderEntityViewDisplay)) {
+-              if ($display->getComponent('title')) {
++          foreach ($variant_plugin->getRegionAssignments() as $blocks) {
++            /** @var \Drupal\Core\Block\BlockPluginInterface[] $blocks */
++            foreach ($blocks as $block) {
++              if ($block->getPluginId() == 'page_title_block') {
+                 return FALSE;
+               }
+             }
+diff --git a/web/modules/contrib/wxt_library/wxt_library.info.yml b/web/modules/contrib/wxt_library/wxt_library.info.yml
+index bfaf1a8..900004e 100644
+--- a/web/modules/contrib/wxt_library/wxt_library.info.yml
++++ b/web/modules/contrib/wxt_library/wxt_library.info.yml
+@@ -1,7 +1,7 @@
+ name: 'WxT Library'
+ description: 'Registers WxT Boostrap as a library.'
+ type: module
+-core: 8.x
++# core: 8.x
+ package: WxT
+ configure: wxt_library.admin
+ 
+@@ -15,7 +15,8 @@ libraries:
+   - wxt_library/wet-boew
+   - wxt_library/wet-boew-dev
+ 
+-# Information added by Drupal.org packaging script on 2019-12-01
+-version: '8.x-1.12'
++# Information added by Drupal.org packaging script on 2019-03-14
++version: '8.x-1.5'
++core: '8.x'
+ project: 'wxt_library'
+-datestamp: 1575231803
++datestamp: 1552606693
+diff --git a/web/modules/contrib/wxt_library/wxt_library.make b/web/modules/contrib/wxt_library/wxt_library.make
+index fb93133..7d8048d 100644
+--- a/web/modules/contrib/wxt_library/wxt_library.make
++++ b/web/modules/contrib/wxt_library/wxt_library.make
+@@ -6,11 +6,11 @@ api = 2
+ ; Libraries for the Web Experience Toolkit jQuery Framework
+ 
+ libraries[wet-boew][download][type] = get
+-libraries[wet-boew][download][url] = https://github.com/wet-boew/wet-boew-cdn/archive/v4.0.32.tar.gz
++libraries[wet-boew][download][url] = https://github.com/wet-boew/wet-boew-cdn/archive/v4.0.30.tar.gz
+ libraries[wet-boew][destination] = ../../libraries
+ 
+ libraries[theme-wet-boew][download][type] = get
+-libraries[theme-wet-boew][download][url] = https://github.com/wet-boew/themes-cdn/archive/v4.0.32-theme-wet-boew.tar.gz
++libraries[theme-wet-boew][download][url] = https://github.com/wet-boew/themes-cdn/archive/v4.0.29-theme-wet-boew.tar.gz
+ libraries[theme-wet-boew][destination] = ../../libraries
+ 
+ libraries[theme-base][download][type] = get
+@@ -30,7 +30,7 @@ libraries[theme-gcweb-legacy][download][url] = https://github.com/wet-boew/theme
+ libraries[theme-gcweb-legacy][destination] = ../../libraries
+ 
+ libraries[theme-gcweb][download][type] = get
+-libraries[theme-gcweb][download][url] = https://github.com/wet-boew/themes-cdn/archive/v6.0-gcweb.tar.gz
++libraries[theme-gcweb][download][url] = https://github.com/wet-boew/themes-cdn/archive/v5.0.1-gcweb.tar.gz
+ libraries[theme-gcweb][destination] = ../../libraries
+ 
+ libraries[theme-ogpl][download][type] = get
+diff --git a/web/modules/contrib/wxt_library/wxt_library.module b/web/modules/contrib/wxt_library/wxt_library.module
+index 4d3eb5c..5acb59c 100644
+--- a/web/modules/contrib/wxt_library/wxt_library.module
++++ b/web/modules/contrib/wxt_library/wxt_library.module
+@@ -85,7 +85,7 @@ function wxt_library_page_attachments(array &$page) {
+               '#noscript' => TRUE,
+               '#attributes' => [
+                 'rel' => 'stylesheet',
+-                'href' => file_url_transform_relative(file_create_url($css['data'])),
++                'href' => DRUPAL_ROOT . '/' . $css['data'],
+               ],
+             ],
+           ];

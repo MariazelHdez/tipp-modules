@@ -1,0 +1,39 @@
+uuid:
+  -
+    value: 9120a8ad-3517-4737-9c98-2cbb1194cf7a
+langcode:
+  -
+    value: en
+uid:
+  -
+    target_type: user
+    target_uuid: 8e951786-6657-44e0-a276-68836602c165
+filename:
+  -
+    value: node_export_5e28fe0fd5d6a.json
+uri:
+  -
+    value: 'public://node_export_5e28fe0fd5d6a.json'
+    url: /sites/default/files/node_export_5e28fe0fd5d6a.json
+filemime:
+  -
+    value: application/octet-stream
+filesize:
+  -
+    value: 5273
+status:
+  -
+    value: true
+created:
+  -
+    value: '2020-01-23T01:59:43+00:00'
+    format: 'Y-m-d\TH:i:sP'
+changed:
+  -
+    value: '2020-01-23T01:59:43+00:00'
+    format: 'Y-m-d\TH:i:sP'
+_content_sync:
+  entity_type: file
+  entity_dependencies:
+    user:
+      - user.user.8e951786-6657-44e0-a276-68836602c165

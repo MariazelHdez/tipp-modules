@@ -1,0 +1,45 @@
+schemas:
+  bootstrap: 8000
+  wxt_bootstrap: 8000
+  wxt_bootstrap_yukon: 8000
+favicon:
+  mimetype: image/vnd.microsoft.icon
+  path: ''
+  url: 'https://dev-yg-webform-wxt.pantheonsite.io/themes/custom/wxt_bootstrap_yukon/favicon.ico'
+  use_default: 1
+features:
+  comment_user_picture: true
+  comment_user_verification: 1
+  favicon: 1
+  node_user_picture: true
+logo:
+  path: themes/custom/wxt_bootstrap_yukon/images/logo.svg
+  url: ''
+  use_default: 0
+wxt_skip_link_primary_text: ''
+wxt_skip_link_secondary_text: ''
+region_wells:
+  navbar: ''
+  navigation: ''
+  search_bar: ''
+  site_alert: ''
+  highlighted: ''
+  header: ''
+  help: ''
+  inline_arlert: ''
+  content: ''
+  page_form: ''
+  sidebar: ''
+  sidebar_sticky: ''
+  featured: ''
+  footer_top: ''
+  footer: ''
+cdn_cache_ttl_versions: '0'
+cdn_cache_ttl_themes: '0'
+wxt_gcweb_cdn_footer_url: ''
+wxt_gcweb_cdn_goc_init: 1
+wxt_gcweb_search: 1
+tooltip_enabled: 1
+cdn_provider: jsdelivr
+reset_http_request_cache: ''
+table: ''
