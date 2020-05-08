@@ -1,0 +1,17 @@
+uuid:
+  -
+    value: 6fb09b73-21de-4ca9-adf5-10d6bf608974
+langcode:
+  -
+    value: und
+path:
+  -
+    value: /webform/turn_in_poachers_polluters/drafts
+alias:
+  -
+    value: /tipp/drafts
+status:
+  -
+    value: true
+_content_sync:
+  entity_type: path_alias

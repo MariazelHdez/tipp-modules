@@ -5,7 +5,7 @@ schemas:
 favicon:
   mimetype: image/vnd.microsoft.icon
   path: ''
-  url: 'https://dev-yg-webform-wxt.pantheonsite.io/themes/custom/wxt_bootstrap_yukon/favicon.ico'
+  url: '/themes/custom/wxt_bootstrap_yukon/favicon.ico'
   use_default: 1
 features:
   comment_user_picture: true

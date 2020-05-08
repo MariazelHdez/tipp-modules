@@ -1,0 +1,17 @@
+uuid:
+  -
+    value: e02398a6-8dd3-476c-ab02-4c2bf4e653e5
+langcode:
+  -
+    value: en
+path:
+  -
+    value: /webform/feedback_form/submissions
+alias:
+  -
+    value: /form/feedback-form/submissions
+status:
+  -
+    value: true
+_content_sync:
+  entity_type: path_alias

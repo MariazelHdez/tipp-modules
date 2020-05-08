@@ -1,0 +1,17 @@
+uuid:
+  -
+    value: 1dd828c7-acc4-4550-a16e-680cd8035f93
+langcode:
+  -
+    value: und
+path:
+  -
+    value: /webform/turn_in_poachers_polluters/confirmation
+alias:
+  -
+    value: /tipp/confirmation
+status:
+  -
+    value: true
+_content_sync:
+  entity_type: path_alias

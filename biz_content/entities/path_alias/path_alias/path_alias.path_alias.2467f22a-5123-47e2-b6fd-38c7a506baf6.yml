@@ -1,0 +1,17 @@
+uuid:
+  -
+    value: 2467f22a-5123-47e2-b6fd-38c7a506baf6
+langcode:
+  -
+    value: en
+path:
+  -
+    value: /webform/turn_in_poachers_polluters/submissions
+alias:
+  -
+    value: /tipp/submissions
+status:
+  -
+    value: true
+_content_sync:
+  entity_type: path_alias

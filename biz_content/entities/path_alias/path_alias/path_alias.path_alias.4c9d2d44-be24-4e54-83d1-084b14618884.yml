@@ -1,0 +1,17 @@
+uuid:
+  -
+    value: 4c9d2d44-be24-4e54-83d1-084b14618884
+langcode:
+  -
+    value: und
+path:
+  -
+    value: /user/register/consultant_lobbyist
+alias:
+  -
+    value: /consultant-registration
+status:
+  -
+    value: true
+_content_sync:
+  entity_type: path_alias

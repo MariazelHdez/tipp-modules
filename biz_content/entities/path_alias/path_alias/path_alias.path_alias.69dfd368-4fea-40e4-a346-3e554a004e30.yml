@@ -1,0 +1,17 @@
+uuid:
+  -
+    value: 69dfd368-4fea-40e4-a346-3e554a004e30
+langcode:
+  -
+    value: und
+path:
+  -
+    value: /webform/feedback_form/drafts
+alias:
+  -
+    value: /form/feedback-form/drafts
+status:
+  -
+    value: true
+_content_sync:
+  entity_type: path_alias

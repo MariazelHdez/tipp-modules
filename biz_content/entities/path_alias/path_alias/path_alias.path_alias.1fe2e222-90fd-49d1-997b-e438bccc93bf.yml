@@ -1,0 +1,17 @@
+uuid:
+  -
+    value: 1fe2e222-90fd-49d1-997b-e438bccc93bf
+langcode:
+  -
+    value: und
+path:
+  -
+    value: /user/register/in_house_lobbyist
+alias:
+  -
+    value: /in-house-registration
+status:
+  -
+    value: true
+_content_sync:
+  entity_type: path_alias
